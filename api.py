@@ -1,4 +1,5 @@
 from flask import Flask
+from flask import request
 from yahoo_data_fetcher import get_price
 
 
@@ -17,10 +18,10 @@ def api(ticker):
 
 @app.route("/api/multiple/")
 def api_multiple():
-    tickers = request.args.get("ticker")
+    tickers = request.args.get('ticker')
     tickers = tickers.split(',')
 
-    result =[]
+    result = []
     for t in tickers:
         result.append(get_price(t))
     return result
